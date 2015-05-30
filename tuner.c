@@ -208,6 +208,8 @@ bool cSatipTuner::Connect(void)
            keepAliveM.Set(timeoutM);
            return true;
            }
+        else
+            rtspM.Reset();
         }
      else if (rtspM.Options(*connectionUri)) {
         cString uri = cString::sprintf("%s?%s", *connectionUri, *streamParamM);
@@ -226,6 +228,7 @@ bool cSatipTuner::Connect(void)
         }
      else
         rtspM.Reset();
+     
      streamIdM = -1;
      error("Connect failed [device %d]", deviceIdM);
      }
